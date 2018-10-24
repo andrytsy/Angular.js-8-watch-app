@@ -1,0 +1,82 @@
+.circle {
+    @media (orientation: portrait) {
+      height: 50vw;
+      width: 50vw;
+    }
+    @media (orientation: landscape) {
+      height: 50vh;
+      width: 50vh;
+    }
+    min-width: 7em;
+    min-height: 7em;
+    position: fixed;
+    border: 1px solid black;
+    border-radius: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+    & > div {
+      position: absolute;
+      top: 0;
+      height: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      transform-origin: bottom;
+      & > div {
+        position: relative;
+        top: 5%;
+        @media (orientation: portrait) {font-size: 10vw;}
+        @media (orientation: landscape) {font-size: 10vh;}
+        user-select: none;
+        cursor: default;
+      }
+    }
+    
+    @for $n from 1 through 12 {
+      $a: $n / 12 * 360deg;
+      & > .number-#{$n} {
+        transform: translateX(-50%) rotate($a);
+        & > div {
+          transform: rotate(-$a);
+        }
+      }
+    }
+    .seconds, .minutes, .hours {
+      border-left: 1px solid black;
+      height: 45%;
+      top: 5%;
+      animation: tick 60s infinite step-end;
+    }
+    .minutes {
+      height: 35%;
+      top: 15%;
+      border-width: 2px;
+      animation-duration: 3600s;
+      transition: transform 1s;
+    }
+    .hours {
+      height: 25%;
+      top: 25%;
+      border-width: 3px;
+      animation-name: hour;
+      animation-duration: 43200s;
+      transition: transform 1s;
+    }
+  }
+  
+  // @keyframes tick {
+  //   @for $i from 0 through 60 {
+  //     #{$i / 60 * 100}% {
+  //       transform: translateX(-50%) rotate($i * 6deg);
+  //     }
+  //   }
+  // }
+  
+  // @keyframes hour {
+  //   @for $i from 0 through 12 {
+  //     #{$i / 12 * 100}% {
+  //       transform: translateX(-50%) rotate($i * 30deg);
+  //     }
+  //   }
+  // }
