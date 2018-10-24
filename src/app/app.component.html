@@ -5,4 +5,8 @@
   <div class='seconds' [style.transform]="rotateS"></div>
   <div class='minutes' [style.transform]="rotateM"></div>
   <div class='hours' [style.transform]="rotateH"></div>
+  <div class='gear'></div>
+</div>
+<div class="time">
+  {{hours < 10 ? '0' + hours : hours}} : {{minutes < 10 ? '0' + minutes : minutes }} : {{seconds < 10 ? '0' + seconds : seconds}}
 </div>

@@ -15,12 +15,12 @@ export class AppComponent {
   numbers = [1,2,3,4,5,6,7,8,9,10,11,12];
 
   date = new Date();
-  hour = 0;
-  minute = 0;
-  second = 0;
-  rotateS = this.getRotate(this.second);
-  rotateM = this.getRotate(this.minute);
-  rotateH = this.getRotate(this.hour);
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
+  rotateS = this.getRotate(this.seconds);
+  rotateM = this.getRotate(this.minutes);
+  rotateH = this.getRotate(this.hours);
 
   ngOnInit() {
     this.initUpdater()
@@ -35,16 +35,16 @@ export class AppComponent {
 
   updateTime() {
     this.date = new Date();
-    let UTCHour = this.date.getHours() + 1; 
-    this.hour = (UTCHour > 12 ? UTCHour - 13 : UTCHour) * 5;
-    this.minute = this.date.getMinutes();
-    this.second = this.date.getSeconds();
+    let UTCHour = this.date.getHours(); 
+    this.hours = UTCHour > 12 ? UTCHour - 12 : UTCHour;
+    this.minutes = this.date.getMinutes();
+    this.seconds = this.date.getSeconds();
   }
 
   updateRotatiom() {
-    this.rotateS = this.getRotate(this.second);
-    this.rotateM = this.getRotate(this.minute);
-    this.rotateH = this.getRotate(this.hour);
+    this.rotateS = this.getRotate(this.seconds);
+    this.rotateM = this.getRotate(this.minutes);
+    this.rotateH = this.getRotate(this.hours*5);
   }
 
   getRotate(value) {
